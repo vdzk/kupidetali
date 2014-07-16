@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<head>
+	<meta charset="utf-8">
+	<script src="js/jquery/jquery-2.1.1.js"></script>
+	
+	<!-- Скрипты которые нужны только для статической версии сайта и безполезны для живой версии. -->
+	<script src="js/static_only/mustache.js"></script>
+	<script src="js/static_only/driver.js"></script>
+</head>
+<body>
+	<!---------------------------------------------------------->
+	<!-- Карта сайта, и информация о статической версии сайта -->
+	<!---------------------------------------------------------->
+	
+	<h1>Карта сайта</h1>
+	<ul class="site_map">
+		<li>
+			<a href="#" data-page="main">Главная страница</a>
+		</li>
+		<li>
+			<a href="#" data-page="main_unregistered">Главная страница без регистрации</a>
+		</li>
+	</ul>
+	
+	<!------------------------------------>
+	<!-- Mustache шаблоны страниц сайта -->
+	<!------------------------------------>
+	
+	<!-- Переменные использующиеся при обработке шаблонов -->
+	<script>
+		//Объект содержит весь статический текст.
+		var text = {};
+		//Объект содержит весь "динамический" текст (в динамической версии будет браться из БД).
+		var data = {};
+	</script>
+	
+	<!-- main_page -->
+	<script id="main_page_tpl" type="text/template">
+		<div>
+			<h1>{{title}}</h1>
+		</div>
+	</script>
+	<script>
+		text.main_page = {
+			title: 'Главная страница'
+		}
+	</script>
+	
+	<!-- main_unregistered_page -->
+	<script id="main_unregistered_page_tpl" type="text/template">
+		<div>
+			<h1>{{title}}</h1>
+		</div>
+	</script>
+	<script>
+		text.main_unregistered_page = {
+			title: 'Главная страница без регистрации'
+		}
+	</script>
+</body>
