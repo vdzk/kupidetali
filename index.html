@@ -1,60 +1,113 @@
 <!DOCTYPE>
-<head>
-	<meta charset="utf-8">
-	<script src="js/jquery/jquery-2.1.1.js"></script>
-	
-	<!-- Скрипты которые нужны только для статической версии сайта и безполезны для живой версии. -->
-	<script src="js/static_only/mustache.js"></script>
-	<script src="js/static_only/driver.js"></script>
-</head>
-<body>
-	<!---------------------------------------------------------->
-	<!-- Карта сайта, и информация о статической версии сайта -->
-	<!---------------------------------------------------------->
-	
-	<h1>Карта сайта</h1>
-	<ul class="site_map">
-		<li>
-			<a href="#" data-page="main">Главная страница</a>
-		</li>
-		<li>
-			<a href="#" data-page="main_unregistered">Главная страница без регистрации</a>
-		</li>
-	</ul>
-	
-	<!------------------------------------>
-	<!-- Mustache шаблоны страниц сайта -->
-	<!------------------------------------>
-	
-	<!-- Переменные использующиеся при обработке шаблонов -->
-	<script>
-		//Объект содержит весь статический текст.
-		var text = {};
-		//Объект содержит весь "динамический" текст (в динамической версии будет браться из БД).
-		var data = {};
-	</script>
-	
-	<!-- main_page -->
-	<script id="main_page_tpl" type="text/template">
-		<div>
-			<h1>{{title}}</h1>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>KupiDetali</title>
+		
+		<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+		
+		<!-- Поддержка старых версий IE -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+		<script src="js/jquery/jquery-2.1.1.js"></script>
+		
+		<!-- Скрипты которые нужны только для статической версии сайта и безполезны для живой версии. -->
+		<script src="js/static_only/mustache.js"></script>
+		<script src="js/static_only/driver.js"></script>
+	</head>
+	<body>
+		<!---------------------------------------------------------->
+		<!-- Карта сайта, и информация о статической версии сайта -->
+		<!---------------------------------------------------------->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<div class="site_map list-group">			
+						<h1 class="text-center list-group-item">
+							<span class="glyphicon glyphicon-list-alt"></span>
+							<span>Карта сайта</span>
+						</h1>
+						<a href="#" class="list-group-item"  data-page="main">Главная страница</a>
+						<a href="#" class="list-group-item"  data-page="main_unregistered">Главная страница без регистрации</a>
+						<span class="list-group-item list-group-item-info lead" >
+							<span>Что бы вернуться к карте сайта нажмите F5</span>
+							<span class="glyphicon glyphicon-refresh"></span>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
-	</script>
-	<script>
-		text.main_page = {
-			title: 'Главная страница'
-		}
-	</script>
-	
-	<!-- main_unregistered_page -->
-	<script id="main_unregistered_page_tpl" type="text/template">
-		<div>
-			<h1>{{title}}</h1>
-		</div>
-	</script>
-	<script>
-		text.main_unregistered_page = {
-			title: 'Главная страница без регистрации'
-		}
-	</script>
-</body>
+		
+		<!------------------------------------>
+		<!-- Mustache шаблоны страниц сайта -->
+		<!------------------------------------>
+		
+		<!-- Переменные использующиеся при обработке шаблонов -->
+		<script>
+			//Объект содержит весь статический текст.
+			var text = {};
+			//Объект содержит весь "динамический" текст (в динамической версии будет браться из БД).
+			var data = {};
+		</script>
+		
+		<!-- main_page -->
+		<script id="main_page_tpl" type="text/template">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3 col-xs-8">
+						<h1>{{brand}}</h1>
+					</div>
+					<div class="col-sm-3 hidden-xs contacts text-center">
+						<div class="row">
+							<div class="col-sm-12">
+								<span class="glyphicon glyphicon-phone-alt"></span>
+								<span class="lead">{{phone}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								{{call_me}}
+							</div>
+							<div class="col-md-6 hidden-sm">
+								{{contacts}}
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 hidden-xs personal">
+					</div>
+					<div class="col-sm-3 col-xs-2 basket">
+						
+					</div>
+				</div>
+			</div>
+		</script>
+		<script>
+			text.main_page = {
+				brand: 'KupiDetali',
+				phone: '(044) 206 56 01',
+				call_me: 'Перезвонить мне',
+				contacts: 'Контакты'
+			}
+		</script>
+		
+		<!-- main_unregistered_page -->
+		<script id="main_unregistered_page_tpl" type="text/template">
+			<div class="container">
+				<h1>{{title}}</h1>
+			</div>
+		</script>
+		<script>
+			text.main_unregistered_page = {
+				title: 'Главная страница без регистрации'
+			}
+		</script>
+		
+		<!-- Bootstrap.js тег должен быть в конце каждой страницы -->
+		<script src="js/bootstrap/bootstrap.js"></script>
+	</body>
+</html>

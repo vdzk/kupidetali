@@ -15,6 +15,8 @@ var driver = {
 				driver.go_to_page($(el).attr('data-page'));
 			});
 		});
+		
+		$('.site_map a').first().click();
 	},
 	go_to_page: function(page_name) {
 		$('body').empty();
