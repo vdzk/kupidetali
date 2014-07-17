@@ -1,0 +1,103 @@
+.header {
+    margin-top:20px;
+	font-size:15px;
+}
+.header .logo {
+    padding-top: 10px;
+}
+.header .phone .glyphicon {
+    font-size: 80%;
+}
+.header .help .glyphicon {
+	float: right;
+}
+.header .user-actions {
+	margin-top: 6px;
+}
+.header .user-actions button, .header a.btn {
+	line-height: 10px;
+}
+.header .user-actions ul {
+	min-width: 0px;
+}
+.header .user-actions .avatar {
+	vertical-align: middle;
+}
+.header .basket button{
+	line-height: 33px;
+	font-size: 16px;
+	padding-left: 9px;
+}
+.header .price-tag {
+	background-color: white;
+	line-height: 28px;
+	padding: 0px 6px;
+	display: inline-block;
+	border-radius: 5px;
+}
+.header ul {
+	width:100%;
+}
+.header .header-list {
+	font-size: 30px;
+}
+
+@media(max-width:767px){
+	.header .header-list {
+		margin-top: 10px;
+	}
+	.header .basket, .header .header-list {
+		font-size: 28px;
+	}
+	.header .num-items {
+		font-size: 18px;
+	}
+	.header .basket, .glyphicon{
+		vertical-align: middle;
+	}
+}
+@media(min-width:768px){
+	.header .phone {
+		font-size: 18px;
+	}
+}
+@media(max-width:992px){
+	.header .avatar {
+		font-size: 36px;
+		margin-top: 6px;
+	}
+	.header .basket button {
+		white-space: initial;
+		line-height: 18px;
+		padding: 3px;
+	}
+}
+@media(min-width:992px){
+	.header .phone {
+		font-size: 24px;
+	}
+	.header .phone-links div{
+		padding-right: 3px;
+		padding-left: 3px;
+	}
+	.header .personal-top div.delivery{
+		padding-right: 3px;
+	}
+	.header .personal-top div.help{
+		padding-left: 3px;
+	}
+	.header .user-actions li a {
+		padding: 3px 7px;
+	}
+}
+@media(min-width:1200px){
+	.header .personal {
+		margin-top: 8px;
+	}
+	.header .phone {
+		font-size: 30px;
+	}
+	.header .basket {
+		margin-top: 8px;
+	}
+}
