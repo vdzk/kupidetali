@@ -5,15 +5,18 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>KupiDetali</title>
+		<link rel="shortcut icon" href="images/favicon.ico">
 		
 		<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 		<link href="css/global.css" rel="stylesheet">
 		<link href="css/header.css" rel="stylesheet">
+		<link href="css/search_tabs.css" rel="stylesheet">
+		<link href="css/top_search.css" rel="stylesheet">
 		
 		<!-- Поддержка старых версий IE -->
 		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		
 		<script src="js/jquery/jquery-2.1.1.js"></script>
@@ -34,8 +37,8 @@
 							<span class="glyphicon glyphicon-list-alt"></span>
 							<span>Карта сайта</span>
 						</h1>
-						<a href="#" class="list-group-item"  data-page="main">Главная страница</a>
-						<a href="#" class="list-group-item"  data-page="main_unregistered">Главная страница без регистрации</a>
+						<a href="#" class="list-group-item"	data-page="main">Главная страница</a>
+						<a href="#" class="list-group-item"	data-page="main_unregistered">Главная страница без регистрации</a>
 						<span class="list-group-item list-group-item-info lead" >
 							<span>Что бы вернуться к карте сайта нажмите F5</span>
 							<span class="glyphicon glyphicon-refresh"></span>
@@ -107,7 +110,7 @@
 									<li><a href="#">{{.}}</a></li>
 								{{/user_links}}
 							</ul>
-						  </div>
+							</div>
 						</div>
 						<div class="row visible-sm-block">
 							<div class="col-sm-3">
@@ -128,7 +131,7 @@
 					</div>
 					<div class="col-sm-3 col-xs-3 basket">
 						<div class="btn-group btn-block hidden-xs">
-							<button class="btn  btn-block btn-lg btn-default dropdown-toggle gray-bg" type="button" data-toggle="dropdown">
+							<button class="btn	btn-block btn-lg btn-default dropdown-toggle gray-bg" type="button" data-toggle="dropdown">
 								<span class="glyphicon glyphicon-shopping-cart blue"></span>
 								{{num_items}}
 								{{items}}
@@ -153,6 +156,75 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				<div class="search-tabs row">
+					<div class="tab main-tab col-md-4 red-bg col-sm-6 col-xs-8">
+						</span>{{search_parts}}</span>
+						<div class="arrow-container">
+							<div class="arrow-down"></div>
+						</div>
+					</div>
+					<div class="tab code-tab col-md-4 gray-bg col-sm-6 col-xs-4">
+						<form class="form-inline form-horizontal" role="form">
+							<div class="form-group">
+								<div class="col-sm-5">
+									<label for="part-code">{{part_code}}</label>
+								</div>
+								<div class="col-sm-4 hidden-xs">
+									<input type="text" class="form-control" id="part-code" >
+								</div>
+								<div class="col-sm-3 btn-wrapper hidden-xs">
+									<button type="submit" class="btn btn-default">{{search}}</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<div class="top-search row">
+					<div class="col-lg-8 main-search">
+						<div class="row">
+							<div class="search-form col-lg-6">
+								<div class="gray-bg">
+									<form role="form">
+										<div class="title red">
+											{{choose_car}}
+										</div>						
+											{{#search_fields}}
+												<div class="form-group">
+													<label for="{{name}}-input">{{text}}</label>
+													<select type="text" class="form-control" id="{{name}}-input"></select>
+												</div>
+											{{/search_fields}}
+										<div class="form-group row">
+											<div class="col-xs-6">
+												<a href="#">{{search_history}}</a>
+											</div>
+											<div class="col-xs-6 text-right">
+												<button type="submit" class="btn btn-primary">{{search_db}}</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="user-links col-lg-6">
+								<div class="title">
+									{{saved_cars}}
+								</div>
+								<ul class="list-unstyled">
+									<li><a href="#">{{.}}</a></li>
+								</ul>
+								<a href="#">{{all_cars}}</a>
+								<div class="title">
+									{{search_history}}
+								</div>
+								<a href="#">{{all_cars}}</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 benefits"></div>
+				</div>
 			</div>
 		</script>
 		<script>
@@ -175,14 +247,41 @@
 				basket: [
 					'Сравнить товары',
 					'Очистить корзину'
-				]
+				],
+				
+				search_parts: 'Поиск запчастей',
+				search: 'Поиск',
+				part_code: 'Код запчасти',
+				
+				choose_car: 'Выберите авто',
+				search_fields: [
+					{name:'make', text:'Марка'},
+					{name:'model', text:'Модель'},
+					{name:'year', text:'Год'}
+				],
+				search_db: 'Поиск в каталоге',
+				saved_cars: 'Мой автопарк',
+				search_history: 'История поиска',
+				all_cars: 'Все авто'
 			};
 			data.main_page = {
 				user_name: 'vasya',
 				user_email: 'vasya@mail.ru',
 				num_items: 10,
 				price_sum: 500,
-				currency: 'грн'
+				currency: 'грн',
+				saved_cars_list: [
+					'Toyota Camry 2014  1,5i',
+					'Toyota Avensis 2012',
+					'Toyota Camry 2014  1,5i',
+					'Toyota Avensis 2012'
+				],
+				search_history_list: [
+					'Land Rover Range Rover Defender',
+					'Toyota Avensis 2012',
+					'Toyota Camry 2014  1,5i,',
+					'Toyota Avensis 2012'
+				]
 			}
 		</script>
 		

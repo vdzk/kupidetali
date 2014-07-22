@@ -1,0 +1,20 @@
+.top-search {
+	margin-top: 25px;
+}
+.top-search .main-search{
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.top-search .search-form>div {
+	padding: 5px 10px;
+}
+.top-search .search-form .title {
+	font-size: 20px;
+	margin-bottom: 15px;
+}
+.top-search label {
+	font-size: 18px;
+	font-weight: normal;
+}
