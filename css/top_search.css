@@ -14,7 +14,46 @@
 	font-size: 20px;
 	margin-bottom: 15px;
 }
+.top-search .search-button {
+	padding-left: 0px;
+}
 .top-search label {
 	font-size: 18px;
 	font-weight: normal;
+}
+.top-search .user-links {
+	padding-left: 25px;
+}
+.top-search .user-links .title {
+	font-size: 20px;
+	color: #666666;
+	margin-bottom: 5px;
+}
+.top-search .user-links .space {
+	height: 15px;
+}
+.top-search .user-links li {
+	font-size: 15px;
+	line-height: 23px;
+}
+.top-search .benefits .benefits-title {
+	color: #D9534F;
+	font-size: 24px;
+}
+.top-search .benefits .basket-image img{
+	margin-left:auto ;
+	margin-right:auto ;
+}
+.top-search .benefits-list li {
+	color: #666666;
+	font-size: 16px;
+}
+
+@media(min-width:1200px){
+	.top-search .benefits .benefits-title  {
+		font-size: 28px;
+	}
+	.top-search .benefits-list li {
+		font-size: 18px;
+	}
 }
