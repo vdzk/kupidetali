@@ -1,0 +1,39 @@
+.tabbed-lists {
+	margin-top: 20px;
+}
+.tabbed-lists .nav-tabs {
+	margin-bottom: 10px;
+}
+.tabbed-lists .nav-tabs li {
+	font-size: 25px;
+}
+.tabbed-lists #products.active {
+	margin-left: -5px;
+	margin-right: -5px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.tabbed-lists .section {
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+}
+.tabbed-lists .inner-section {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	padding: 8px;
+	flex-grow: 1;
+}
+.tabbed-lists .section .title {
+	height: 48px;
+}
+.tabbed-lists .section img {
+	margin-bottom: 15px;
+}
+
+
+@media(max-width:992px){
+	.tabbed-lists .nav-tabs li {
+		font-size: 22px;
+	}
+}
