@@ -1,0 +1,26 @@
+ Volume in drive C is Acer
+ Volume Serial Number is E456-E8BF
+
+ Directory of C:\dev\kupidetali\source\static\images\brands
+
+24/07/2014  09:43             9,047 AGIP.jpg
+24/07/2014  09:42             3,446 ALKAR.jpg
+24/07/2014  09:42             2,508 Behr.jpg
+24/07/2014  09:41             5,820 Bendix.jpg
+24/07/2014  09:43             5,457 BERU.jpg
+24/07/2014  09:42            10,099 Febi.jpg
+24/07/2014  09:41             7,190 Ferodo.jpg
+24/07/2014  09:42             8,133 Hella.jpg
+24/07/2014  09:42             4,504 K&N.jpg
+24/07/2014  09:43             6,923 LuK.jpg
+24/07/2014  09:42            11,743 Magneti Marelli.jpg
+24/07/2014  09:41             4,018 Mintex.jpg
+24/07/2014  09:42            10,090 Nissens.jpg
+24/07/2014  09:42             7,851 Osram.jpg
+24/07/2014  09:42            10,201 Purflux.jpg
+24/07/2014  09:42             5,844 Textar.jpg
+24/07/2014  09:41             9,667 TRW.jpg
+24/07/2014  09:42             5,836 Valeo.jpg
+24/07/2014  09:42             6,189 WIX.jpg
+              19 File(s)        134,566 bytes
+               0 Dir(s)  747,463,950,336 bytes free

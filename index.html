@@ -64,7 +64,7 @@
 		<!-- main_page -->
 		<script id="main_page_tpl" type="text/template">
 			<div class="container">
-				<div class="row header hidden">
+				<div class="row header ">
 					<div class="col-sm-3 col-xs-7 logo">
 						<a href="#">
 							<img src="images/logo.png" class="img-responsive" alt="KupiDetali">
@@ -159,7 +159,7 @@
 				</div>
 				
 				
-				<div class="search-tabs row hidden">
+				<div class="search-tabs row ">
 					<div class="tab main-tab col-md-4 red-bg col-sm-6 col-xs-8">
 						</span>{{search_parts}}</span>
 						<div class="arrow-container">
@@ -183,7 +183,7 @@
 					</div>
 				</div>
 				
-				<div class="top-search row hidden">
+				<div class="top-search row ">
 					<div class="col-md-8 col-sm-12 main-search">
 						<div class="row">
 							<div class="search-form col-sm-6">
@@ -248,6 +248,7 @@
 				</div>
 				
 				<div class="tabbed-lists row">
+					<!-- FIXME: Следуя макету, в размере xs nav-tabs длжен превращатся в accordion. Например как в https://github.com/okendoken/bootstrap-tabcollapse -->
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li class="active">
 							<a href="#products" data-toggle="tab">{{products}}</a>
@@ -281,11 +282,26 @@
 								</div>
 							{{/catalog}}
 						</div>
-						<div class="tab-pane" id="popular-makes">
-							{{popular_makes}}
+						<div class="tab-pane text-center" id="popular-makes">
+							{{#makes}}
+								<div class="make">
+									<a href="#">
+										<img src="images/makes/thumbs_{{name}}.png">
+										<div class="name">
+											{{#to_upper}}{{name}}{{/to_upper}}
+										</div>
+									</a>
+								</div>
+							{{/makes}}
 						</div>
 						<div class="tab-pane" id="popular-brands">
-							{{popular_brands}}
+							{{#brands}}
+								<a href="#"><!--
+									--><div class="brand">
+											<img src="images/brands/{{.}}.jpg">
+									</div><!--
+								--></a>
+							{{/brands}}
 						</div>
 					</div>
 				</div>
@@ -511,6 +527,17 @@
 							'Трансмиссионное масло'
 						]
 					}
+				],
+				makes: [
+					{name:'abarth'},{name:'ac'},{name:'acura'},{name:'aixam'},{name:'alfa_romeo'},{name:'ariel'},{name:'arrinera'},{name:'aston_martin'},{name:'audi'},{name:'bentley'},{name:'bmw'},{name:'bugatti'},{name:'buick'},{name:'cadillac'},{name:'caterham'},{name:'chevrolet'},{name:'chrysler'},{name:'citroen'},{name:'corvette'},{name:'dacia'},{name:'daewoo'},{name:'daf'},{name:'daihatsu'},{name:'dodge'},{name:'drmotor'},{name:'elfin'},{name:'ferrari'},{name:'fiat'},{name:'ford'},{name:'gaz'},{name:'geely'},{name:'gillet'},{name:'ginetta'},{name:'gm'},{name:'gmc'},{name:'great-wall'},{name:'gumpert'},{name:'hennessey'},{name:'holden'},{name:'honda'},{name:'hummer'},{name:'hyundai'},{name:'infiniti'},{name:'isuzu'},{name:'jaguar'},{name:'jeep'},{name:'joss'},{name:'kia'},{name:'koenigsegg'},{name:'lada'}/*,{name:'lamborghini'},{name:'lancia'},{name:'land_rover'},{name:'lexus'},{name:'lincoln'},{name:'lotus'},{name:'mahindra'},{name:'maruti_suzuki'},{name:'maserati'},{name:'maybach'},{name:'mazda'},{name:'mclaren'},{name:'mercedes_benz'},{name:'mg'},{name:'mini'},{name:'mitsubishi'},{name:'morgan_motor'},{name:'mosler'},{name:'mustang'},{name:'nissan'},{name:'noble'},{name:'opel'},{name:'pagani'},{name:'panoz'},{name:'perodua'},{name:'peugeot'},{name:'piaggio'},{name:'pininfarina'},{name:'porsche'},{name:'proton'},{name:'renault'},{name:'reva'},{name:'rolls_royce'},{name:'ruf'},{name:'saab'},{name:'scania'},{name:'scion'},{name:'seat'},{name:'shelby'},{name:'skoda'},{name:'smart'},{name:'spyker'},{name:'ssangyong'},{name:'ssc'},{name:'subaru'},{name:'suzuki'},{name:'tata'},{name:'tatra'},{name:'tesla'},{name:'think'},{name:'toyota'},{name:'tramontana'},{name:'troller'},{name:'tvr'},{name:'uaz'},{name:'vandenbrink_design'},{name:'vauxhall'},{name:'vector_motors'},{name:'venturi'},{name:'volkswagen'},{name:'volvo'},{name:'wiesmann'},{name:'zagato'},{name:'zaz'},{name:'zil'}*/
+				],
+				to_upper: function(text) {
+					return function(text, render) {
+						return render(text).toUpperCase().replace('_', ' ');
+					}
+				},
+				brands: [
+					'AGIP','ALKAR','Behr','Bendix','BERU','Febi','Ferodo','Hella','K&N','LuK','Magneti Marelli','Mintex','Nissens','Osram','Purflux','Textar','TRW','Valeo','WIX'
 				]
 			}
 		</script>

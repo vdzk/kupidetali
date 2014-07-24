@@ -49,6 +49,14 @@
 	font-size: 16px;
 }
 
+@media(max-width:767px){
+	.top-search .user-links {
+		margin-top: 20px;
+	}
+	.top-search .main-search {
+		border: none;
+	}
+}
 @media(min-width:1200px){
 	.top-search .benefits .benefits-title  {
 		font-size: 28px;

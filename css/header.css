@@ -61,7 +61,7 @@
 		font-size: 18px;
 	}
 }
-@media(max-width:992px){
+@media(max-width:991px){
 	.header .avatar {
 		font-size: 36px;
 		margin-top: 6px;
