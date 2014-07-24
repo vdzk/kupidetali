@@ -1,14 +1,17 @@
 .tabbed-lists {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 .tabbed-lists .nav-tabs li {
 	font-size: 25px;
 }
+.tabbed-lists .tab-content {
+	overflow-x: hidden;
+}
 .tabbed-lists #products.active {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 0px 5px;
-	padding-top: 10px;
+	margin-left: -5px;
+	margin-right: -5px;
 }
 .tabbed-lists .section {
 	padding: 5px;
@@ -72,17 +75,25 @@
 	box-shadow: 0px 0px 10px #888888;
 }
 
-@media(min-width:768px){
-	#products, #popular-brands, #popular-makes {
-		border: 1px solid #cccccc;
-		border-top-color: transparent;
-		border-bottom-right-radius: 5px;
-		border-bottom-left-radius: 5px;
-	}
-}
+
+
 
 @media(max-width:991px){
 	.tabbed-lists .nav-tabs li {
 		font-size: 22px;
+	}
+}
+@media(max-width:767px){
+	.tabbed-lists .section .title {
+		height: 62px;
+	}
+	.tabbed-lists .section {
+		padding: 2px;
+	}
+}
+@media(min-width:768px){
+	#popular-brands, #popular-makes {
+		border: 1px solid #cccccc;
+		border-radius: 5px;
 	}
 }

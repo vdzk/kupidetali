@@ -8,6 +8,7 @@
 		<link rel="shortcut icon" href="images/favicon.ico">
 		
 		<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap/nav-tabs-pointer.css" rel="stylesheet">
 		<link href="css/global.css" rel="stylesheet">
 		<link href="css/header.css" rel="stylesheet">
 		<link href="css/search_tabs.css" rel="stylesheet">
@@ -249,21 +250,30 @@
 				
 				<div class="tabbed-lists row">
 					<!-- FIXME: Следуя макету, в размере xs nav-tabs длжен превращатся в accordion. Например как в https://github.com/okendoken/bootstrap-tabcollapse -->
-					<ul class="nav nav-tabs nav-justified" role="tablist">
+					<ul class="nav nav-tabs nav-tabs-pointer nav-justified" role="tablist">
 						<li class="active">
 							<a href="#products" data-toggle="tab">{{products}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
 						</li>
 						<li>
 							<a href="#popular-makes" data-toggle="tab">{{popular_makes}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
 						</li>
 						<li>
 							<a href="#popular-brands" data-toggle="tab">{{popular_brands}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
 						</li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="products">
 							{{#catalog}}
-								<div class='col-md-3 col-sm-4 col-xs-12 section'>
+								<div class='col-md-3 col-sm-4 col-xs-6 section'>
 									<div class="inner-section">
 										<div class="title">
 											<a href="#" >
