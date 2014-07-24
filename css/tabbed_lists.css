@@ -9,20 +9,30 @@
 }
 .tabbed-lists #products.active {
 	display: flex;
+	display: -ms-flex;
+	display: -webkit-flex;
 	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
 	margin-left: -5px;
 	margin-right: -5px;
 }
 .tabbed-lists .section {
 	padding: 5px;
 	display: flex;
+	display: -ms-flex;
+	display: -webkit-flex;
 	flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 }
 .tabbed-lists .inner-section {
 	border: 1px solid #cccccc;
 	border-radius: 5px;
 	padding: 8px;
 	flex-grow: 1;
+	-ms-flex-grow: 1;
+	-webkit-flex-grow: 1;
 }
 .tabbed-lists .section .title {
 	height: 48px;
