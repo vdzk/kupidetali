@@ -44,6 +44,7 @@
 						</h1>
 						<a href="#" class="list-group-item"	data-page="main">Главная страница</a>
 						<a href="#" class="list-group-item"	data-page="main_unregistered">Главная страница без регистрации</a>
+						<a href="#" class="list-group-item"	data-page="makes">Марки</a>
 						<span class="list-group-item list-group-item-info lead" >
 							<span>Что бы вернуться к карте сайта нажмите F5</span>
 							<span class="glyphicon glyphicon-refresh"></span>
@@ -61,386 +62,12 @@
 		<script>
 			//Объект содержит весь статический текст.
 			var text = {};
+			//Текст который используется больше чем в одном месте
+			text.common = {};
 			//Объект содержит весь "динамический" текст (в динамической версии будет браться из БД).
 			var data = {};
-		</script>
-		
-		<!-- main_page -->
-		<script id="main_page_tpl" type="text/template">
-			<div class="container">
-				<div class="row header">
-					<div class="col-sm-3 col-xs-7 logo">
-						<a href="#">
-							<img src="images/logo.png" class="img-responsive" alt="KupiDetali">
-						</a>
-					</div>
-					<div class="col-sm-3 hidden-xs contacts text-center">
-						<div class="row">
-							<div class="col-sm-12 phone">
-								<span class="glyphicon glyphicon-phone-alt gray"></span>
-								<span>{{phone}}</span>
-							</div>
-						</div>
-						<div class="row phone-links">
-							<div class="col-md-7 col-sm-12">
-								<a href="#">{{call_me}}</a>
-							</div>
-							<div class="col-md-5 hidden-sm vert-separator">
-								<a href="#">{{contacts}}</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3 hidden-xs personal">
-						<div class="row hidden-sm personal-top">
-							<div class="delivery col-md-4 text-center">
-								<a href="#">{{delivery}}</a>
-							</div>
-							<div class="help col-md-8 vert-separator text-center">
-								<a href="#">{{help}}</a>
-								<span class="glyphicon glyphicon-comment gray"></span>
-							</div>
-						</div>
-						<div class="btn-group btn-group-justified hidden-sm user-actions">
-							<a href="#" class="btn btn-danger log-out">
-								{{log_out}}
-							</a>
-							<div class="btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle user-name gray-bg" data-toggle="dropdown">
-								<span class="glyphicon glyphicon-user gray avatar"></span>
-								<span>{{user_name}}</span>
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								{{#user_links}}
-									<li><a href="#">{{.}}</a></li>
-								{{/user_links}}
-							</ul>
-							</div>
-						</div>
-						<div class="row visible-sm-block">
-							<div class="col-sm-3">
-								<span class="glyphicon glyphicon-user gray avatar"></span>
-							</div>
-							<div class="col-sm-9">
-								<div>{{user_email}}</div>
-								<div>
-									<a href="#" class="gray">{{log_out}}</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-2 visible-xs-block">
-						<a href="#">
-							<span class="header-list glyphicon glyphicon glyphicon-align-justify gray"></span>
-						</a>
-					</div>
-					<div class="col-sm-3 col-xs-3 basket">
-						<div class="btn-group btn-block hidden-xs">
-							<button class="btn	btn-block btn-lg btn-default dropdown-toggle gray-bg" type="button" data-toggle="dropdown">
-								<span class="glyphicon glyphicon-shopping-cart blue"></span>
-								{{num_items}}
-								{{items}}
-								<span class="price-tag">
-									{{price_sum}}
-									{{currency}}
-								</span>
-								<span class="glyphicon glyphicon-chevron-down blue"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								{{#basket}}
-									<li><a href="#">{{.}}</a></li>
-								{{/basket}}
-							</ul>
-						</div>
-						<div class="visible-xs-block">
-							<a href="#" >
-								<span class="glyphicon glyphicon-shopping-cart blue"></span></a>
-							<a href="#" >
-								<span class="num-items">({{num_items}})</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="search-tabs row">
-					<div class="tab main-tab col-md-4 red-bg col-sm-6 col-xs-8">
-						</span>{{search_parts}}</span>
-						<div class="arrow-container">
-							<div class="arrow-down"></div>
-						</div>
-					</div>
-					<div class="tab code-tab col-md-4 gray-bg col-sm-6 col-xs-4">
-						<form class="form-inline form-horizontal" role="form">
-							<div class="form-group">
-								<div class="col-sm-5">
-									<label for="part-code">{{part_code}}</label>
-								</div>
-								<div class="col-sm-4 hidden-xs">
-									<input type="text" class="form-control" id="part-code" >
-								</div>
-								<div class="col-sm-3 btn-wrapper hidden-xs">
-									<button type="submit" class="btn btn-default">{{search}}</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				
-				<div class="top-search row">
-					<div class="col-md-8 col-sm-12 main-search">
-						<div class="row">
-							<div class="search-form col-sm-6">
-								<div class="gray-bg">
-									<form role="form">
-										<div class="title red">
-											{{choose_car}}
-										</div>						
-											{{#search_fields}}
-												<div class="form-group">
-													<label for="{{name}}-input">{{text}}</label>
-													<select type="text" class="form-control" id="{{name}}-input"></select>
-												</div>
-											{{/search_fields}}
-										<div class="form-group row">
-											<div class="col-xs-6">
-												<a href="#">{{search_history}}</a>
-											</div>
-											<div class="col-xs-6 text-right search-button">
-												<button type="submit" class="btn btn-primary">{{search_db}}</button>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<div class="user-links col-sm-6">
-								<div class="title">
-									{{saved_cars}}
-								</div>
-								<ul class="list-unstyled">
-									{{#saved_cars_list}}
-										<li><a href="#">{{.}}</a></li>
-									{{/saved_cars_list}}
-								</ul>
-								<a href="#">{{all_cars}}</a>
-								<div class="space"></div>
-								<div class="title">
-									{{search_history}}
-								</div>
-								<ul class="list-unstyled">
-									{{#search_history_list}}
-										<li><a href="#">{{.}}</a></li>
-									{{/search_history_list}}
-								</ul>
-								<a href="#">{{all_cars}}</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 benefits hidden-sm hidden-xs">
-						<div class="benefits-title">
-							{{benefits_title}}
-						</div>
-						<div class="basket-image">
-							<img src="images/big_basket.png" class="img-responsive">
-						</div>
-						<ul class="list-unstyled benefits-list">
-							{{#benefits}}
-								<li>{{.}}</li>
-							{{/benefits}}
-						</ul>
-					</div>
-				</div>
-				
-				<div class="tabbed-lists row">
-					<ul class="nav nav-tabs nav-tabs-pointer nav-justified" role="tablist">
-						<li class="active">
-							<a href="#products" data-toggle="tab">{{products}}</a>
-							<div class="arrow-container">
-								<div class="arrow-down"></div>
-							</div>
-						</li>
-						<li>
-							<a href="#popular-makes" data-toggle="tab">{{popular_makes}}</a>
-							<div class="arrow-container">
-								<div class="arrow-down"></div>
-							</div>
-						</li>
-						<li>
-							<a href="#popular-brands" data-toggle="tab">{{popular_brands}}</a>
-							<div class="arrow-container">
-								<div class="arrow-down"></div>
-							</div>
-						</li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="products">
-							{{#catalog}}
-								<div class='col-md-3 col-sm-4 col-xs-6 section'>
-									<div class="inner-section">
-										<div class="title">
-											<a href="#" >
-												<h4>{{title}}</h4>
-											</a>
-										</div>
-										<img src="images/catalog/{{name}}.png" class="img-responsive">
-										<ul class="list-unstyled">
-											{{#subsections}}
-												<li>
-													<a href="#">{{.}}</a>
-												</li>
-											{{/subsections}}
-										</ul>
-									</div>
-								</div>
-							{{/catalog}}
-						</div>
-						<div class="tab-pane text-center" id="popular-makes">
-							{{#makes}}
-								{{#random_filter}}
-									<div class="make">
-										<a href="#">
-											<img src="images/makes/thumbs_{{name}}.png">
-											<div class="name">
-												{{#to_upper}}{{name}}{{/to_upper}}
-											</div>
-										</a>
-									</div>
-								{{/random_filter}}
-							{{/makes}}
-						</div>
-						<div class="tab-pane" id="popular-brands">
-							{{#brands}}
-								<a href="#"><!--
-									--><div class="brand">
-											<img src="images/brands/{{.}}.jpg">
-									</div><!--
-								--></a>
-							{{/brands}}
-						</div>
-					</div>
-				</div>
-				
-				<div class="footer">
-					<div class="benefits row">
-						<div class="why-us">
-							{{why_us}}
-						</div>
-						{{#footer_benefits}}
-							<div class="benefit col-sm-3 col-xs-6">
-								<a href="#">
-									<div class="image-container">
-										<img src="images/benefits/{{name}}.png" class="img-responsive">
-									</div>
-									<div class="sign">
-										{{sign}}
-									</div>
-								</a>
-							</div>
-						{{/footer_benefits}}
-					</div>
-					
-					<div class="quick-links row">
-						<ul class="nav nav-pills nav-pills-ignore" role="tablist">
-							<h4 class="title">{{listings}}</h4>
-							{{#quick_tabs}}
-								<li class="{{class}}">
-									<a href="#quick-{{name}}" role="tab" data-toggle="tab">{{title}}</a>
-								</li>
-							{{/quick_tabs}}
-						</ul>
-						<div class="tab-content">
-							{{#quick_tabs}}
-								<div class="tab-pane {{class}}" id="quick-{{name}}">
-									{{#makes}}
-										{{#random_filter}}
-											<div class="name">
-												<a href="#">
-													{{#explode}}{{name}}{{/explode}}
-												</a>
-											</div>
-										{{/random_filter}}
-									{{/makes}}
-								</div>
-							{{/quick_tabs}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</script>
-		<script>
-			text.main_page = {
-				brand: 'KupiDetali',
-				phone: '(044) 206 56 01',
-				call_me: 'Перезвонить мне',
-				contacts: 'Контакты',
-				delivery: 'Доставка',
-				help: 'Помощь онлайн',
-				log_out: 'Выйти',
-				items: 'товаров',
-				user_links: [
-					'Корзина',
-					'Заказы',
-					'Автопарк',
-					'Рассылки',
-					'Мой профиль'
-				],
-				basket: [
-					'Сравнить товары',
-					'Очистить корзину'
-				],
-				
-				search_parts: 'Поиск запчастей',
-				search: 'Поиск',
-				part_code: 'Код запчасти',
-				
-				choose_car: 'Выберите авто',
-				search_fields: [
-					{name:'make', text:'Марка'},
-					{name:'model', text:'Модель'},
-					{name:'year', text:'Год'}
-				],
-				search_db: 'Поиск в каталоге',
-				saved_cars: 'Мой автопарк',
-				search_history: 'История поиска',
-				all_cars: 'Все авто',
-				benefits_title: 'Онлайн поиск запчастей',
-				benefits: [
-					'Доставка во все регионы',
-					'Лучшие цены в Украине',
-					'Более 100 000 000 запчастей в наличии'
-				],
-				
-				products: 'Каталог товаров',
-				popular_makes: 'Популярные марки',
-				popular_brands: 'Популярные бренды',
-				
-				why_us: 'Почему мы?',
-				footer_benefits: [
-					{name:'warranty', sign: 'Гарантия на все товары'},
-					{name: 'delivery', sign: 'Доставка по Украине'},
-					{name: 'payment', sign: 'Оплата при получении'},
-					{name: 'products', sign: 'Товары в наличии'}
-				],
-				listings: 'Объявления'
-			};
-			data.main_page = {
-				user_name: 'vasya',
-				user_email: 'vasya@mail.ru',
-				num_items: 10,
-				price_sum: 500,
-				currency: 'грн',
-				saved_cars_list: [
-					'Toyota Camry 2014  1,5i',
-					'Toyota Avensis 2012',
-					'Toyota Camry 2014  1,5i',
-					'Toyota Avensis 2012'
-				],
-				search_history_list: [
-					'Land Rover Range Rover Defender...',
-					'Toyota Avensis 2012',
-					'Toyota Camry 2014  1,5i,',
-					'Toyota Avensis 2012'
-				],
+			//Информация которая используется больше чем в одном месте
+			data.common = {
 				catalog: [
 					{
 						name: 'inspection_goods',
@@ -617,29 +244,412 @@
 				},
 				brands: [
 					'AGIP','ALKAR','Behr','Bendix','BERU','Febi','Ferodo','Hella','K&N','LuK','Magneti Marelli','Mintex','Nissens','Osram','Purflux','Textar','TRW','Valeo','WIX'
+				]
+			}
+			//Объект определяет содержимое сложных шаблонов 
+			var partials = {};
+		</script>
+		
+		<!-- header -->
+		<script id="header_tpl" type="text/template">
+			<div class="row header">
+				<div class="col-sm-3 col-xs-7 logo">
+					<a href="#">
+						<img src="images/logo.png" class="img-responsive" alt="KupiDetali">
+					</a>
+				</div>
+				<div class="col-sm-3 hidden-xs contacts text-center">
+					<div class="row">
+						<div class="col-sm-12 phone">
+							<span class="glyphicon glyphicon-phone-alt gray"></span>
+							<span>{{phone}}</span>
+						</div>
+					</div>
+					<div class="row phone-links">
+						<div class="col-md-7 col-sm-12">
+							<a href="#">{{call_me}}</a>
+						</div>
+						<div class="col-md-5 hidden-sm vert-separator">
+							<a href="#">{{contacts}}</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 hidden-xs personal">
+					<div class="row hidden-sm personal-top">
+						<div class="delivery col-md-4 text-center">
+							<a href="#">{{delivery}}</a>
+						</div>
+						<div class="help col-md-8 vert-separator text-center">
+							<a href="#">{{help}}</a>
+							<span class="glyphicon glyphicon-comment gray"></span>
+						</div>
+					</div>
+					<div class="btn-group btn-group-justified hidden-sm user-actions">
+						<a href="#" class="btn btn-danger log-out">
+							{{log_out}}
+						</a>
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle user-name gray-bg" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-user gray avatar"></span>
+							<span>{{user_name}}</span>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							{{#user_links}}
+								<li><a href="#">{{.}}</a></li>
+							{{/user_links}}
+						</ul>
+						</div>
+					</div>
+					<div class="row visible-sm-block">
+						<div class="col-sm-3">
+							<span class="glyphicon glyphicon-user gray avatar"></span>
+						</div>
+						<div class="col-sm-9">
+							<div>{{user_email}}</div>
+							<div>
+								<a href="#" class="gray">{{log_out}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-2 visible-xs-block">
+					<a href="#">
+						<span class="header-list glyphicon glyphicon glyphicon-align-justify gray"></span>
+					</a>
+				</div>
+				<div class="col-sm-3 col-xs-3 basket">
+					<div class="btn-group btn-block hidden-xs">
+						<button class="btn	btn-block btn-lg btn-default dropdown-toggle gray-bg" type="button" data-toggle="dropdown">
+							<span class="glyphicon glyphicon-shopping-cart blue"></span>
+							{{num_items}}
+							{{items}}
+							<span class="price-tag">
+								{{price_sum}}
+								{{currency}}
+							</span>
+							<span class="glyphicon glyphicon-chevron-down blue"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							{{#basket}}
+								<li><a href="#">{{.}}</a></li>
+							{{/basket}}
+						</ul>
+					</div>
+					<div class="visible-xs-block">
+						<a href="#" >
+							<span class="glyphicon glyphicon-shopping-cart blue"></span></a>
+						<a href="#" >
+							<span class="num-items">({{num_items}})</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="search-tabs row">
+				<div class="tab main-tab col-md-4 red-bg col-sm-6 col-xs-8">
+					</span>{{search_parts}}</span>
+					<div class="arrow-container">
+						<div class="arrow-down"></div>
+					</div>
+				</div>
+				<div class="tab code-tab col-md-4 gray-bg col-sm-6 col-xs-4">
+					<form class="form-inline form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-5">
+								<label for="part-code">{{part_code}}</label>
+							</div>
+							<div class="col-sm-4 hidden-xs">
+								<input type="text" class="form-control" id="part-code" >
+							</div>
+							<div class="col-sm-3 btn-wrapper hidden-xs">
+								<button type="submit" class="btn btn-default">{{search}}</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</script>
+		<script>
+			text.header = {
+				brand: 'KupiDetali',
+				phone: '(044) 206 56 01',
+				call_me: 'Перезвонить мне',
+				contacts: 'Контакты',
+				delivery: 'Доставка',
+				help: 'Помощь онлайн',
+				log_out: 'Выйти',
+				items: 'товаров',
+				user_links: [
+					'Корзина',
+					'Заказы',
+					'Автопарк',
+					'Рассылки',
+					'Мой профиль'
 				],
+				basket: [
+					'Сравнить товары',
+					'Очистить корзину'
+				],
+				
+				search_parts: 'Поиск запчастей',
+				search: 'Поиск',
+				part_code: 'Код запчасти'
+			},
+			data.header = {
+				user_name: 'vasya',
+				user_email: 'vasya@mail.ru',
+				num_items: 10,
+				price_sum: 500,
+				currency: 'грн'
+			}
+		</script>
+		
+		<!-- footer -->
+		<script id="footer_tpl" type="text/template">
+			<div class="footer">
+				<div class="benefits row">
+					<div class="why-us">
+						{{why_us}}
+					</div>
+					{{#footer_benefits}}
+						<div class="benefit col-sm-3 col-xs-6">
+							<a href="#">
+								<div class="image-container">
+									<img src="images/benefits/{{name}}.png" class="img-responsive">
+								</div>
+								<div class="sign">
+									{{sign}}
+								</div>
+							</a>
+						</div>
+					{{/footer_benefits}}
+				</div>
+				
+				<div class="quick-links row">
+					<ul class="nav nav-pills nav-pills-ignore" role="tablist">
+						<h4 class="title">{{listings}}</h4>
+						{{#quick_tabs}}
+							<li class="{{class}}">
+								<a href="#quick-{{name}}" role="tab" data-toggle="tab">{{title}}</a>
+							</li>
+						{{/quick_tabs}}
+					</ul>
+					<div class="tab-content">
+						{{#quick_tabs}}
+							<div class="tab-pane {{class}}" id="quick-{{name}}">
+								{{#makes}}
+									{{#random_filter}}
+										<div class="name">
+											<a href="#">
+												{{#explode}}{{name}}{{/explode}}
+											</a>
+										</div>
+									{{/random_filter}}
+								{{/makes}}
+							</div>
+						{{/quick_tabs}}
+					</div>
+				</div>
+			</div>
+		</script>
+		<script>
+			text.footer = {								
+				why_us: 'Почему мы?',
+				footer_benefits: [
+					{name:'warranty', sign: 'Гарантия на все товары'},
+					{name: 'delivery', sign: 'Доставка по Украине'},
+					{name: 'payment', sign: 'Оплата при получении'},
+					{name: 'products', sign: 'Товары в наличии'}
+				],
+				listings: 'Объявления'
+			}
+			data.footer = {
 				quick_tabs: [
-					{
-						'class': 'active',
-						name: 'makes',
-						title: 'Авто по маркам'
-					},
-					{
-						name: 'new-makes', 
-						title: 'Новые авто по маркам'
-					},
-					{
-						name: 'other', 
-						title: 'Другие'
-					},
-					{
-						name: 'countries', 
-						title: 'Авто по странам-производителям'
-					},
-					{
-						name: 'body', 
-						title: 'Авто по типу кузова'
-					}
+					{'class': 'active', name: 'makes', title: 'Авто по маркам' },
+					{ name: 'new-makes', title: 'Новые авто по маркам' },
+					{ name: 'other', title: 'Другие'},
+					{ name: 'countries', title: 'Авто по странам-производителям'},
+					{ name: 'body', title: 'Авто по типу кузова' }
+				]
+			}
+		</script>
+		
+		<!-- main_page -->
+		<script id="main_page_tpl" type="text/template">
+			<div class="container">
+				{{> header}}
+				<div class="top-search row">
+					<div class="col-md-8 col-sm-12 main-search">
+						<div class="row">
+							<div class="search-form col-sm-6">
+								<div class="gray-bg">
+									<form role="form">
+										<div class="title red">
+											{{choose_car}}
+										</div>						
+											{{#search_fields}}
+												<div class="form-group">
+													<label for="{{name}}-input">{{text}}</label>
+													<select type="text" class="form-control" id="{{name}}-input"></select>
+												</div>
+											{{/search_fields}}
+										<div class="form-group row">
+											<div class="col-xs-6">
+												<a href="#">{{search_history}}</a>
+											</div>
+											<div class="col-xs-6 text-right search-button">
+												<button type="submit" class="btn btn-primary">{{search_db}}</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="user-links col-sm-6">
+								<div class="title">
+									{{saved_cars}}
+								</div>
+								<ul class="list-unstyled">
+									{{#saved_cars_list}}
+										<li><a href="#">{{.}}</a></li>
+									{{/saved_cars_list}}
+								</ul>
+								<a href="#">{{all_cars}}</a>
+								<div class="space"></div>
+								<div class="title">
+									{{search_history}}
+								</div>
+								<ul class="list-unstyled">
+									{{#search_history_list}}
+										<li><a href="#">{{.}}</a></li>
+									{{/search_history_list}}
+								</ul>
+								<a href="#">{{all_cars}}</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 benefits hidden-sm hidden-xs">
+						<div class="benefits-title">
+							{{benefits_title}}
+						</div>
+						<div class="basket-image">
+							<img src="images/big_basket.png" class="img-responsive">
+						</div>
+						<ul class="list-unstyled benefits-list">
+							{{#benefits}}
+								<li>{{.}}</li>
+							{{/benefits}}
+						</ul>
+					</div>
+				</div>
+				
+				<div class="tabbed-lists row">
+					<ul class="nav nav-tabs nav-tabs-pointer nav-justified" role="tablist">
+						<li class="active">
+							<a href="#products" data-toggle="tab">{{products}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
+						</li>
+						<li>
+							<a href="#popular-makes" data-toggle="tab">{{popular_makes}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
+						</li>
+						<li>
+							<a href="#popular-brands" data-toggle="tab">{{popular_brands}}</a>
+							<div class="arrow-container">
+								<div class="arrow-down"></div>
+							</div>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="products">
+							{{#catalog}}
+								<div class='col-md-3 col-sm-4 col-xs-6 section'>
+									<div class="inner-section">
+										<div class="title">
+											<a href="#" >
+												<h4>{{title}}</h4>
+											</a>
+										</div>
+										<img src="images/catalog/{{name}}.png" class="img-responsive">
+										<ul class="list-unstyled">
+											{{#subsections}}
+												<li>
+													<a href="#">{{.}}</a>
+												</li>
+											{{/subsections}}
+										</ul>
+									</div>
+								</div>
+							{{/catalog}}
+						</div>
+						<div class="tab-pane text-center" id="popular-makes">
+							{{#makes}}
+								{{#random_filter}}
+									<div class="make">
+										<a href="#">
+											<img src="images/makes/thumbs_{{name}}.png">
+											<div class="name">
+												{{#to_upper}}{{name}}{{/to_upper}}
+											</div>
+										</a>
+									</div>
+								{{/random_filter}}
+							{{/makes}}
+						</div>
+						<div class="tab-pane" id="popular-brands">
+							{{#brands}}
+								<a href="#"><!--
+									--><div class="brand">
+											<img src="images/brands/{{.}}.jpg">
+									</div><!--
+								--></a>
+							{{/brands}}
+						</div>
+					</div>
+				</div>
+				{{> footer}}
+			</div>
+		</script>
+		<script>
+			partials.main_page = ['header', 'footer'];
+			text.main_page = {
+				choose_car: 'Выберите авто',
+				search_fields: [
+					{name:'make', text:'Марка'},
+					{name:'model', text:'Модель'},
+					{name:'year', text:'Год'}
+				],
+				search_db: 'Поиск в каталоге',
+				saved_cars: 'Мой автопарк',
+				search_history: 'История поиска',
+				all_cars: 'Все авто',
+				benefits_title: 'Онлайн поиск запчастей',
+				benefits: [
+					'Доставка во все регионы',
+					'Лучшие цены в Украине',
+					'Более 100 000 000 запчастей в наличии'
+				],
+				
+				products: 'Каталог товаров',
+				popular_makes: 'Популярные марки',
+				popular_brands: 'Популярные бренды',
+			};
+			data.main_page = {
+				saved_cars_list: [
+					'Toyota Camry 2014  1,5i',
+					'Toyota Avensis 2012',
+					'Toyota Camry 2014  1,5i',
+					'Toyota Avensis 2012'
+				],
+				search_history_list: [
+					'Land Rover Range Rover Defender...',
+					'Toyota Avensis 2012',
+					'Toyota Camry 2014  1,5i,',
+					'Toyota Avensis 2012'
 				]
 			}
 		</script>
@@ -647,12 +657,30 @@
 		<!-- main_unregistered_page -->
 		<script id="main_unregistered_page_tpl" type="text/template">
 			<div class="container">
+				{{> header}}
 				<h1>{{title}}</h1>
+				{{> footer}}
 			</div>
 		</script>
 		<script>
+			partials.main_unregistered_page = ['footer','header'];
 			text.main_unregistered_page = {
 				title: 'Главная страница без регистрации'
+			}
+		</script>
+		
+		<!-- makes_page -->
+		<script id="makes_page_tpl" type="text/template">
+			<div class="container">
+				{{> header}}
+				<h1>{{title}}</h1>
+				{{> footer}}
+			</div>
+		</script>
+		<script>
+			partials.makes_page = ['footer','header'];
+			text.makes_page = {
+				title: 'Марки'
 			}
 		</script>
 		
