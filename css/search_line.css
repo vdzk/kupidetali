@@ -1,0 +1,10 @@
+.search-line {
+	margin-top: 25px;
+}
+.search-line label {
+	font-size: 18px;
+	font-weight: normal;
+}
+.search-line button {
+	margin-top: 5px;
+}

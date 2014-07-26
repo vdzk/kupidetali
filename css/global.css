@@ -20,3 +20,14 @@ body {
 .vert-separator {
 	border-left: 1px solid #c6c6c4;
 }
+.btn-primary {
+color: #fff;
+background-color: #d9534f;
+border-color: #d9534f;
+font-size: 18px;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+color: #fff;
+background-color: #D14A47;
+border-color: #D14A47;
+}

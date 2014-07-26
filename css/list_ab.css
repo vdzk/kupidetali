@@ -1,0 +1,68 @@
+.list-ab {
+	margin-top: 10px;
+}
+.list-ab .title{ 
+	font-size: 25px;
+	color: #D9534F;
+}
+.list-ab .letter_groups {
+	margin-top: 10px;
+	text-transform: capitalize;
+	column-gap:0px;
+	-moz-column-gap:0px;
+	-webkit-column-gap:0px;
+}
+.list-ab .letter {
+	font-size: 20px;
+}
+.list-ab .popular {
+	background-color: fae6e4;
+	font-weight: bold;
+}
+.list-ab .group {
+	display: inline-block;
+	min-width: 200px;
+	vertical-align: top;
+}
+.list-ab ul {
+	margin-bottom: 20px;
+}
+
+@media(max-width:767px){
+	.list-ab .letter_groups  {
+		column-count:2;
+		-moz-column-count:2;
+		-webkit-column-count:2;
+	}
+	.list-ab .group {
+		display: inline;
+	}
+	.list-ab .letter_groups  li {
+		margin-right: 15px;
+	}
+}
+@media(min-width:768px){
+	.list-ab .letter_groups  {
+		column-count:3;
+		-moz-column-count:3;
+		-webkit-column-count:3;	
+	}
+	.list-ab .group {
+		min-width: 220px;
+	}
+}
+@media(min-width:992px){
+	.list-ab .letter_groups  {
+		column-count:4;
+		-moz-column-count:4;
+		-webkit-column-count:4;	
+	}
+	.list-ab .group {
+		min-width: 215px;
+	}
+}
+@media(min-width:1200px){
+	.list-ab .group {
+		min-width: 265px;
+	}
+}

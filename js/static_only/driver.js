@@ -15,6 +15,8 @@ var driver = {
 				driver.go_to_page($(el).attr('data-page'));
 			});
 		});
+		
+		// $('.site_map a').last().click();
 	},
 	go_to_page: function(page_name) {
 		$('body').empty();
@@ -34,7 +36,6 @@ var driver = {
 		all_text.push(data.common, text.common);
 		all_text.unshift({});
 		var combined_text = $.extend.apply(this, all_text);
-		console.log(combined_text);
 		var rendered = Mustache.render(template, combined_text, combined_partials);
 		$('body').html(rendered);
 	}
