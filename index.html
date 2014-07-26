@@ -9,11 +9,14 @@
 		
 		<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap/nav-tabs-pointer.css" rel="stylesheet">
+		<link href="css/bootstrap/nav-pills-ignore.css" rel="stylesheet">
+		
 		<link href="css/global.css" rel="stylesheet">
 		<link href="css/header.css" rel="stylesheet">
 		<link href="css/search_tabs.css" rel="stylesheet">
 		<link href="css/top_search.css" rel="stylesheet">
 		<link href="css/tabbed_lists.css" rel="stylesheet">
+		<link href="css/footer.css" rel="stylesheet">
 		
 		<!-- Поддержка старых версий IE -->
 		<!--[if lt IE 9]>
@@ -65,7 +68,7 @@
 		<!-- main_page -->
 		<script id="main_page_tpl" type="text/template">
 			<div class="container">
-				<div class="row header ">
+				<div class="row header">
 					<div class="col-sm-3 col-xs-7 logo">
 						<a href="#">
 							<img src="images/logo.png" class="img-responsive" alt="KupiDetali">
@@ -160,7 +163,7 @@
 				</div>
 				
 				
-				<div class="search-tabs row ">
+				<div class="search-tabs row">
 					<div class="tab main-tab col-md-4 red-bg col-sm-6 col-xs-8">
 						</span>{{search_parts}}</span>
 						<div class="arrow-container">
@@ -184,7 +187,7 @@
 					</div>
 				</div>
 				
-				<div class="top-search row ">
+				<div class="top-search row">
 					<div class="col-md-8 col-sm-12 main-search">
 						<div class="row">
 							<div class="search-form col-sm-6">
@@ -249,7 +252,6 @@
 				</div>
 				
 				<div class="tabbed-lists row">
-					<!-- FIXME: Следуя макету, в размере xs nav-tabs длжен превращатся в accordion. Например как в https://github.com/okendoken/bootstrap-tabcollapse -->
 					<ul class="nav nav-tabs nav-tabs-pointer nav-justified" role="tablist">
 						<li class="active">
 							<a href="#products" data-toggle="tab">{{products}}</a>
@@ -294,14 +296,16 @@
 						</div>
 						<div class="tab-pane text-center" id="popular-makes">
 							{{#makes}}
-								<div class="make">
-									<a href="#">
-										<img src="images/makes/thumbs_{{name}}.png">
-										<div class="name">
-											{{#to_upper}}{{name}}{{/to_upper}}
-										</div>
-									</a>
-								</div>
+								{{#random_filter}}
+									<div class="make">
+										<a href="#">
+											<img src="images/makes/thumbs_{{name}}.png">
+											<div class="name">
+												{{#to_upper}}{{name}}{{/to_upper}}
+											</div>
+										</a>
+									</div>
+								{{/random_filter}}
 							{{/makes}}
 						</div>
 						<div class="tab-pane" id="popular-brands">
@@ -312,6 +316,52 @@
 									</div><!--
 								--></a>
 							{{/brands}}
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer">
+					<div class="benefits row">
+						<div class="why-us">
+							{{why_us}}
+						</div>
+						{{#footer_benefits}}
+							<div class="benefit col-sm-3 col-xs-6">
+								<a href="#">
+									<div class="image-container">
+										<img src="images/benefits/{{name}}.png" class="img-responsive">
+									</div>
+									<div class="sign">
+										{{sign}}
+									</div>
+								</a>
+							</div>
+						{{/footer_benefits}}
+					</div>
+					
+					<div class="quick-links row">
+						<ul class="nav nav-pills nav-pills-ignore" role="tablist">
+							<h4 class="title">{{listings}}</h4>
+							{{#quick_tabs}}
+								<li class="{{class}}">
+									<a href="#quick-{{name}}" role="tab" data-toggle="tab">{{title}}</a>
+								</li>
+							{{/quick_tabs}}
+						</ul>
+						<div class="tab-content">
+							{{#quick_tabs}}
+								<div class="tab-pane {{class}}" id="quick-{{name}}">
+									{{#makes}}
+										{{#random_filter}}
+											<div class="name">
+												<a href="#">
+													{{#explode}}{{name}}{{/explode}}
+												</a>
+											</div>
+										{{/random_filter}}
+									{{/makes}}
+								</div>
+							{{/quick_tabs}}
 						</div>
 					</div>
 				</div>
@@ -362,7 +412,16 @@
 				
 				products: 'Каталог товаров',
 				popular_makes: 'Популярные марки',
-				popular_brands: 'Популярные бренды'
+				popular_brands: 'Популярные бренды',
+				
+				why_us: 'Почему мы?',
+				footer_benefits: [
+					{name:'warranty', sign: 'Гарантия на все товары'},
+					{name: 'delivery', sign: 'Доставка по Украине'},
+					{name: 'payment', sign: 'Оплата при получении'},
+					{name: 'products', sign: 'Товары в наличии'}
+				],
+				listings: 'Объявления'
 			};
 			data.main_page = {
 				user_name: 'vasya',
@@ -539,15 +598,48 @@
 					}
 				],
 				makes: [
-					{name:'abarth'},{name:'ac'},{name:'acura'},{name:'aixam'},{name:'alfa_romeo'},{name:'ariel'},{name:'arrinera'},{name:'aston_martin'},{name:'audi'},{name:'bentley'},{name:'bmw'},{name:'bugatti'},{name:'buick'},{name:'cadillac'},{name:'caterham'},{name:'chevrolet'},{name:'chrysler'},{name:'citroen'},{name:'corvette'},{name:'dacia'},{name:'daewoo'},{name:'daf'},{name:'daihatsu'},{name:'dodge'},{name:'drmotor'},{name:'elfin'},{name:'ferrari'},{name:'fiat'},{name:'ford'},{name:'gaz'},{name:'geely'},{name:'gillet'},{name:'ginetta'},{name:'gm'},{name:'gmc'},{name:'great-wall'},{name:'gumpert'},{name:'hennessey'},{name:'holden'},{name:'honda'},{name:'hummer'},{name:'hyundai'},{name:'infiniti'},{name:'isuzu'},{name:'jaguar'},{name:'jeep'},{name:'joss'},{name:'kia'},{name:'koenigsegg'},{name:'lada'}/*,{name:'lamborghini'},{name:'lancia'},{name:'land_rover'},{name:'lexus'},{name:'lincoln'},{name:'lotus'},{name:'mahindra'},{name:'maruti_suzuki'},{name:'maserati'},{name:'maybach'},{name:'mazda'},{name:'mclaren'},{name:'mercedes_benz'},{name:'mg'},{name:'mini'},{name:'mitsubishi'},{name:'morgan_motor'},{name:'mosler'},{name:'mustang'},{name:'nissan'},{name:'noble'},{name:'opel'},{name:'pagani'},{name:'panoz'},{name:'perodua'},{name:'peugeot'},{name:'piaggio'},{name:'pininfarina'},{name:'porsche'},{name:'proton'},{name:'renault'},{name:'reva'},{name:'rolls_royce'},{name:'ruf'},{name:'saab'},{name:'scania'},{name:'scion'},{name:'seat'},{name:'shelby'},{name:'skoda'},{name:'smart'},{name:'spyker'},{name:'ssangyong'},{name:'ssc'},{name:'subaru'},{name:'suzuki'},{name:'tata'},{name:'tatra'},{name:'tesla'},{name:'think'},{name:'toyota'},{name:'tramontana'},{name:'troller'},{name:'tvr'},{name:'uaz'},{name:'vandenbrink_design'},{name:'vauxhall'},{name:'vector_motors'},{name:'venturi'},{name:'volkswagen'},{name:'volvo'},{name:'wiesmann'},{name:'zagato'},{name:'zaz'},{name:'zil'}*/
+					{name:'abarth'},{name:'ac'},{name:'acura'},{name:'aixam'},{name:'alfa_romeo'},{name:'ariel'},{name:'arrinera'},{name:'aston_martin'},{name:'audi'},{name:'bentley'},{name:'bmw'},{name:'bugatti'},{name:'buick'},{name:'cadillac'},{name:'caterham'},{name:'chevrolet'},{name:'chrysler'},{name:'citroen'},{name:'corvette'},{name:'dacia'},{name:'daewoo'},{name:'daf'},{name:'daihatsu'},{name:'dodge'},{name:'drmotor'},{name:'elfin'},{name:'ferrari'},{name:'fiat'},{name:'ford'},{name:'gaz'},{name:'geely'},{name:'gillet'},{name:'ginetta'},{name:'gm'},{name:'gmc'},{name:'great-wall'},{name:'gumpert'},{name:'hennessey'},{name:'holden'},{name:'honda'},{name:'hummer'},{name:'hyundai'},{name:'infiniti'},{name:'isuzu'},{name:'jaguar'},{name:'jeep'},{name:'joss'},{name:'kia'},{name:'koenigsegg'},{name:'lada'},{name:'lamborghini'},{name:'lancia'},{name:'land_rover'},{name:'lexus'},{name:'lincoln'},{name:'lotus'},{name:'mahindra'},{name:'maruti_suzuki'},{name:'maserati'},{name:'maybach'},{name:'mazda'},{name:'mclaren'},{name:'mercedes_benz'},{name:'mg'},{name:'mini'},{name:'mitsubishi'},{name:'morgan_motor'},{name:'mosler'},{name:'mustang'},{name:'nissan'},{name:'noble'},{name:'opel'},{name:'pagani'},{name:'panoz'},{name:'perodua'},{name:'peugeot'},{name:'piaggio'},{name:'pininfarina'},{name:'porsche'},{name:'proton'},{name:'renault'},{name:'reva'},{name:'rolls_royce'},{name:'ruf'},{name:'saab'},{name:'scania'},{name:'scion'},{name:'seat'},{name:'shelby'},{name:'skoda'},{name:'smart'},{name:'spyker'},{name:'ssangyong'},{name:'ssc'},{name:'subaru'},{name:'suzuki'},{name:'tata'},{name:'tatra'},{name:'tesla'},{name:'think'},{name:'toyota'},{name:'tramontana'},{name:'troller'},{name:'tvr'},{name:'uaz'},{name:'vandenbrink_design'},{name:'vauxhall'},{name:'vector_motors'},{name:'venturi'},{name:'volkswagen'},{name:'volvo'},{name:'wiesmann'},{name:'zagato'},{name:'zaz'},{name:'zil'}
 				],
 				to_upper: function(text) {
 					return function(text, render) {
 						return render(text).toUpperCase().replace('_', ' ');
 					}
 				},
+				explode: function(text) {
+					return function(text, render) {
+						return render(text).replace('_', ' ');
+					}
+				},
+				random_filter: function(text) {
+					return function(text, render) {
+						if (Math.random() > 0.7) return render(text);
+					}
+				},
 				brands: [
 					'AGIP','ALKAR','Behr','Bendix','BERU','Febi','Ferodo','Hella','K&N','LuK','Magneti Marelli','Mintex','Nissens','Osram','Purflux','Textar','TRW','Valeo','WIX'
+				],
+				quick_tabs: [
+					{
+						'class': 'active',
+						name: 'makes',
+						title: 'Авто по маркам'
+					},
+					{
+						name: 'new-makes', 
+						title: 'Новые авто по маркам'
+					},
+					{
+						name: 'other', 
+						title: 'Другие'
+					},
+					{
+						name: 'countries', 
+						title: 'Авто по странам-производителям'
+					},
+					{
+						name: 'body', 
+						title: 'Авто по типу кузова'
+					}
 				]
 			}
 		</script>

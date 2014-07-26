@@ -8,14 +8,14 @@
 	overflow-x: hidden;
 }
 .tabbed-lists #products.active {
+	margin: -5px;
+	overflow: hidden;
 	display: flex;
 	display: -ms-flex;
 	display: -webkit-flex;
 	flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
-	margin-left: -5px;
-	margin-right: -5px;
 }
 .tabbed-lists .section {
 	padding: 5px;
@@ -101,8 +101,7 @@
 		padding: 2px;
 	}
 	.tabbed-lists #products.active {
-		margin-left: -2px;
-		margin-right: -2px;
+		margin: -2px;
 	}
 }
 @media(min-width:768px){

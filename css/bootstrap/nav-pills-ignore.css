@@ -1,0 +1,30 @@
+.nav-pills-ignore {
+	border: 1px solid #e4e4e4;
+	background-color: #f7f7f7;
+	border-radius: 4px 4px 0 0;
+	color: #AEAEAE;
+	line-height: 34px;
+	font-size: 15px;
+}
+.nav-pills-ignore > li > a {
+	color: #AEAEAE;
+	padding: 10px 30px;
+	border-radius: 0px;
+}
+.nav-pills-ignore .title {
+	display: inline-block;
+	float: left;
+	padding: 10px 30px;
+	margin: 0;
+	line-height: 34px;
+}
+.nav-pills-ignore > li + li {
+	margin-left: 0px;
+}
+
+.nav-pills-ignore > li.active > a,
+.nav-pills-ignore > li.active > a:hover,
+.nav-pills-ignore > li.active > a:focus {
+	color: #777777;
+	background-color: #e6e6e6;
+}
