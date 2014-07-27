@@ -1,0 +1,32 @@
+.air-panel .panel {
+	border: none;
+	box-shadow: none;
+}
+.air-panel .panel-heading + .panel-collapse > .panel-body {
+	border: none;
+}
+.air-panel .panel-heading {
+	background-color: #f2f2f2;
+	font-size: 18px;
+	border-radius: 0px;
+	padding-right: 30px;
+	position: relative;
+}
+.air-panel .panel-heading .glyphicon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -11px;
+}
+.air-panel .panel-heading .glyphicon-chevron-down{
+	display: none;
+} 
+.air-panel .panel-heading .glyphicon-minus{
+	display: block;
+} 
+.air-panel .collapsed .glyphicon-chevron-down {
+	display: block;
+}
+.air-panel .collapsed .glyphicon-minus {
+	display: none;
+}

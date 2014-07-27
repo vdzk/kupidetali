@@ -1,0 +1,50 @@
+.listing {
+	margin-bottom: 30px;
+}
+.listing form {
+	margin-bottom: 0px;
+	float: right;
+}
+.listing label  {
+	font-weight: normal;
+}
+.listing .nav > li > a {
+	padding: 10px 12px;
+}
+.listing .item {
+	margin-top: 15px;
+	border: 1px solid #999999;
+	padding: 8px;
+}
+.listing .item img {
+	border: 1px solid #cccccc;
+	vertical-align: top;
+}
+.listing .item .main {
+	display: inline-block;
+	margin-left: 5px;
+}
+.listing .item  .title{
+	font-size: 18px;
+}
+.listing .item  .subtitle {
+	font-size: 18px;
+	color: #999999;
+}
+.listing .item .right {
+	display: inline-block;
+	padding-right: 5px;
+}
+.listing .item .price {
+	padding-left: 8px;
+	font-size: 26px;
+	margin-bottom: 15px;	
+}
+.listing .item .count {
+	margin-bottom: 10px;
+}
+@media(min-width:992px){
+	.listing .item .right {
+		float: right;
+	}
+}

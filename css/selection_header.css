@@ -1,5 +1,5 @@
 .selection-header {
-	margin-top: 25px;
+	margin-top: 20px;
 	margin-bottom: 25px;
 }
 .selection-header .breadcrumbs {
@@ -11,7 +11,7 @@
 	color: #1f5376;
 }
 .selection-header .actions {
-	margin-top: 10px;
+	margin-top: 15px;
 	border-top: 2px solid #cccccc;
 }
 .selection-header .title-container {

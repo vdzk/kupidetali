@@ -10,6 +10,7 @@
 		<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap/nav-tabs-pointer.css" rel="stylesheet">
 		<link href="css/bootstrap/nav-pills-ignore.css" rel="stylesheet">
+		<link href="css/bootstrap/air-panel.css" rel="stylesheet">
 		
 		<link href="css/global.css" rel="stylesheet">
 		<link href="css/header.css" rel="stylesheet">
@@ -20,6 +21,7 @@
 		<link href="css/search_line.css" rel="stylesheet">
 		<link href="css/list_ab.css" rel="stylesheet">
 		<link href="css/selection_header.css" rel="stylesheet">
+		<link href="css/listing.css" rel="stylesheet">
 		
 		
 		
@@ -48,7 +50,6 @@
 							<span>Карта сайта</span>
 						</h1>
 						<a href="#" class="list-group-item"	data-page="main">Главная страница</a>
-						<a href="#" class="list-group-item"	data-page="main_unregistered">Главная страница без регистрации</a>
 						<a href="#" class="list-group-item"	data-page="makes">Марки</a>
 						<a href="#" class="list-group-item"	data-page="listing">Список деталей</a>
 						<span class="list-group-item list-group-item-info lead" >
@@ -705,21 +706,6 @@
 			}
 		</script>
 		
-		<!-- main_unregistered_page -->
-		<script id="main_unregistered_page_tpl" type="text/template">
-			<div class="container">
-				{{> header}}
-				<h1>{{title}}</h1>
-				{{> footer}}
-			</div>
-		</script>
-		<script>
-			partials.main_unregistered_page = ['footer','header'];
-			text.main_unregistered_page = {
-				title: 'Главная страница без регистрации'
-			}
-		</script>
-		
 		<!-- makes_page -->
 		<script id="makes_page_tpl" type="text/template">
 			<div class="container">
@@ -799,17 +785,72 @@
 					</div>
 				</div>
 				<div class="main-container row">
-					<div class="col-lg-3">
-						<div class="panel-group" id="accordion">
+					<div class="col-md-9 col-md-push-3 listing">
+						<ul class="nav nav-pills" role="tablist">
+							<form class="form-inline" role="form">
+								<div class="form-group">
+									<label for="order-options">{{order.label}}:</label>
+									<select class="form-control" id="#order-options">
+										{{#order.options}}
+											<option value="{{value}}">{{text}}</option>
+										{{/order.options}}
+									</select>
+								</div>
+							</form>
+							<li class="active"><a href="#original" role="tab" data-toggle="tab">{{original}}</a></li>
+							<li><a href="#non-original" role="tab" data-toggle="tab">{{non_original}}</a></li>
+							<li><a href="#original-repl" role="tab" data-toggle="tab">{{original_repl}}</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="original">
+								{{#listing}}
+									<div class="item">
+										<a href="#"><img src="images/photos/{{id}}.png"></a>
+										<div class="main">
+											<div class="title">
+												<a href="#">{{title}}</a>
+											</div>
+											<div class="subtitle">
+												{{make}}
+												{{code}}
+											</div>
+											</br>
+											<div>{{part_code}}: {{code}}</div>
+											<div>{{part_make}}: <a href="#">{{make}}</a></div>
+										</div>
+										<div class="right">
+											<a href="#">
+												<div class="price">
+													{{price}}
+													{{currency}}
+												</div>
+											</a>
+											<div class="count">
+												{{part_count}} ({{count}})
+											</div>
+											<button type="submit" class="btn btn-primary">
+												<span class="glyphicon glyphicon-shopping-cart"></span>
+												{{buy}}
+											</button>
+										</div>
+									</div>
+								{{/listing}}
+							</div>
+							<div class="tab-pane" id="non-original"></div>
+							<div class="tab-pane" id="original-repl"></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-md-pull-9">
+						<div class="panel-group air-panel" id="accordion">
 							<div class="panel panel-default">
 								{{#catalog}}
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{name}}">
-												{{title}}
-											</a>
-										</h4>
-									</div>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{name}}" class="collapsed">
+										<div class="panel-heading">
+											{{title}}
+											<span class="glyphicon glyphicon-chevron-down"></span>
+											<span class="glyphicon glyphicon-minus"></span>
+										</div>
+									</a>
 									<div id="collapse-{{name}}" class="panel-collapse collapse">
 										<div class="panel-body">
 											<ul class="list-unstyled">
@@ -825,8 +866,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-9">
-					</div>
 				</div>
 				{{> footer}}
 			</div>
@@ -836,7 +875,23 @@
 			text.listing_page = {
 				save_car: 'Сохранить в автопарк',
 				change_car: 'Изменить авто',
-				my_cars: 'Мой автопарк'
+				my_cars: 'Мой автопарк',
+				original: 'Оригинал',
+				non_original: 'Не оригинал',
+				original_repl: 'Оригинальные замены',
+				order: {
+					label: 'Сортировка',
+					options: [
+						{ value: 'price asc', text:'По цене по возрастанию'} ,
+						{ value: 'price desc', text: 'По цене по убыванию'} ,
+						{ value: 'name asc', text: 'По алфавиту А-Я'} ,
+						{ value: 'name desc', text: 'По алфавиту Я-А'}
+					]
+				},
+				part_code: 'Код запчасти',
+				part_make: 'Производитель',
+				part_count: 'есть в наличии',
+				buy: 'Купить'
 			},
 			data.listing_page = {
 				breadcrumbs: {
@@ -847,7 +902,18 @@
 					make: 'KIA',
 					model: 'Cerato',
 					modification: '2.0 Executive 2013'
-				}
+				},
+				listing: [
+					{
+						title: 'Комплект поршневых колец',
+						make: 'GOETZE',
+						code: '0813950000',
+						price: 350,
+						currency: 'грн',
+						count: 6,
+						id: 123456
+					}
+				]
 			}
 		</script>
 		
