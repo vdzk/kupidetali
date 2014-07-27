@@ -1,12 +1,8 @@
-.search-tabs {
-	border-top: 2px solid #1269a9;
-	margin-top: 18px;
-	position: relative;
-}
 .search-tabs .tab {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	font-size: 18px;
+	position: relative;
 }
 .search-tabs form {
 	margin-bottom: 0px;

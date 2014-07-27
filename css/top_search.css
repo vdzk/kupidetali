@@ -1,11 +1,16 @@
 .top-search {
 	margin-top: 25px;
 }
+.top-search form {
+	padding: 10px;
+	margin: 5px 0px;
+}
+.top-search .last.form-group {
+	margin-bottom: 0px;
+}
 .top-search .main-search{
 	border-radius: 5px;
 	border: 1px solid #cccccc;
-	padding-top: 15px;
-	padding-bottom: 15px;
 }
 .top-search .search-form>div {
 	padding: 5px 10px;
@@ -22,7 +27,7 @@
 	font-weight: normal;
 }
 .top-search .user-links {
-	padding-left: 25px;
+	padding: 15px;
 }
 .top-search .user-links .title {
 	font-size: 20px;
@@ -47,6 +52,9 @@
 .top-search .benefits-list li {
 	color: #666666;
 	font-size: 16px;
+}
+.top-search .benefits ul {
+	margin-bottom: 0px;
 }
 
 @media(max-width:767px){

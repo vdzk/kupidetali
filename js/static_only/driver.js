@@ -16,14 +16,15 @@ var driver = {
 			});
 		});
 		
-		// $('.site_map a').last().click();
+		$('.site_map a').last().click();
+		$('.header, .footer, .search-tabs').hide();
 	},
 	go_to_page: function(page_name) {
 		$('body').empty();
 		var template = templates[page_name+'_page_tpl'];
 		var page_text = text[page_name+'_page'];
 		var page_data = data[page_name+'_page'];
-		var all_text = [page_text, page_data];
+		var all_text = [{},data.common, text.common, page_text, page_data];
 		var page_partials = partials[page_name+'_page'];
 		var combined_partials = {};
 		for (var i = 0; i < page_partials.length; i++) {
@@ -33,8 +34,6 @@ var driver = {
 			all_text.push(partial_text, partial_data);
 			combined_partials[page_partials[i]] = partial_template;
 		}
-		all_text.push(data.common, text.common);
-		all_text.unshift({});
 		var combined_text = $.extend.apply(this, all_text);
 		var rendered = Mustache.render(template, combined_text, combined_partials);
 		$('body').html(rendered);
