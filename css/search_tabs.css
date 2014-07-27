@@ -4,7 +4,12 @@
 	font-size: 18px;
 	position: relative;
 }
+.search-tabs .code-tab {
+	line-height: 45px;
+	margin-left: -15px;
+}
 .search-tabs form {
+	padding-left: 15px;
 	margin-bottom: 0px;
 	position: relative;
 	top: -2px;
@@ -14,9 +19,6 @@
 	margin-bottom: 0px;
 	font-weight: normal;
 	line-height: 34px;
-}
-.search-tabs form #part-code {
-	width: 100%;
 }
 .search-tabs .form-group {
 	margin-bottom: 0px;
@@ -50,9 +52,29 @@
 	border-top: 11px solid #d9534f;
 	margin: 0 auto;
 }
-
+@media(max-width:767px){
+	.search-tabs .code-tab {
+		line-height: 45px;
+		margin-left: -5px;
+	}
+	.search-tabs  .form-horizontal .form-group {
+		margin: 0px;
+	}
+}
+@media(min-width:768px){
+	#part-code {
+		width: 155px;
+	}
+}
+@media(min-width:992px){
+	#part-code {
+		width: 120px;
+	}
+}
 @media(min-width:1200px){
 	.search-tabs .code-tab .form-group>div.btn-wrapper {
 		padding-left: 20px;
+	}	#part-code {
+		width: 180px;
 	}
 }
