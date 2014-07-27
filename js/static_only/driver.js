@@ -16,8 +16,8 @@ var driver = {
 			});
 		});
 		
-		$('.site_map a').last().click();
-		$('.header, .footer, .search-tabs').hide();
+		// $('.site_map a').last().click();
+		// $('.header, .footer, .search-tabs').hide();
 	},
 	go_to_page: function(page_name) {
 		$('body').empty();
